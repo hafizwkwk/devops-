@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelompok 4 – Solusi Digital UMKM</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & GLOBAL STYLE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #1e291e; 
+            color: #ffffff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .page-wrapper {
+            background: linear-gradient(rgba(30, 40, 30, 0.8), rgba(30, 40, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1590541576391-dfc42314a7ae?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 255, 255, 0.03);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { background: #2ecc71; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); }
+        .logo-text { font-weight: 800; color: #ffffff; font-size: 1.3rem; letter-spacing: -0.5px; }
+        .logo-text span { color: #2ecc71; }
+
+        nav ul { display: flex; list-style: none; align-items: center; gap: 30px; }
+        nav ul li a { text-decoration: none; color: #ffffff; font-weight: 500; opacity: 0.7; transition: 0.3s; font-size: 0.95rem; }
+        nav ul li a:hover { opacity: 1; color: #2ecc71; }
+
+        .nav-wa {
+            background: #2ecc71;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white !important;
+            font-weight: 700 !important;
+            opacity: 1 !important;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            padding: 140px 8% 100px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-text { flex: 1.2; }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 25px; }
+        .hero-text p { font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 40px; max-width: 600px; }
+
+        .hero-btns { display: flex; gap: 15px; }
+        .btn { padding: 16px 32px; text-decoration: none; border-radius: 50px; font-weight: 700; transition: 0.3s; font-size: 0.95rem; border: none; cursor: pointer; }
+        .btn-primary { background: #2ecc71; color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3); }
+        .btn-outline { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+
+        .hero-image { flex: 0.8; position: relative; }
+        .hero-image img { width: 100%; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+
+        /* --- SECTIONS --- */
+        section { padding: 100px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-header p.sub { color: #2ecc71; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 12px; }
+        .section-header h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
+
+        /* --- CARDS STYLE --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover { transform: translateY(-12px); border-color: rgba(46, 204, 113, 0.4); background: rgba(255, 255, 255, 0.06); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+        /* --- GRIDS --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
+        .vm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+
+        /* --- ELEMENTS --- */
+        .card-icon { font-size: 2.5rem; color: #2ecc71; margin-bottom: 25px; }
+        .stat-number { font-size: 3.5rem; font-weight: 800; color: #2ecc71; line-height: 1; margin-bottom: 10px; }
+        
+        .avatar-box { width: 100px; height: 100px; margin: 0 auto 20px; position: relative; }
+        .avatar-box img { width: 100%; height: 100%; border-radius: 50%; background: #243124; border: 2px solid rgba(46, 204, 113, 0.3); }
+        .role-badge { background: rgba(46, 204, 113, 0.1); color: #2ecc71; padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+
+        /* --- FOOTER --- */
+        footer { padding: 80px 8% 40px; background: rgba(10, 15, 10, 0.5); border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-col h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 25px; color: #2ecc71; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+        .footer-links li i { margin-right: 10px; color: #2ecc71; }
+
+        @media (max-width: 992px) {
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-btns { justify-content: center; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <nav>
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf" style="color: white;"></i></div>
+                <span class="logo-text">KELOMPOK <span>4</span></span>
+            </a>
+            <ul>
+                <li><a href="#beranda">Tentang</a></li>
+                <li><a href="#visi">Visi Misi</a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#tim">Tim Kami</a></li>
+                <li><a href="https://wa.me/6285695638214" target="_blank" class="nav-wa"><i class="fab fa-whatsapp"></i> Chat</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero" id="beranda">
+            <div class="hero-text">
+                <h1>Transformasi Digital <br>UMKM Masa Depan</h1>
+                <p>Kami hadir bukan sekadar membangun website, melainkan menjadi mitra strategis dalam merevolusi cara UMKM berinteraksi dengan pasar dunia melalui sentuhan teknologi modern.</p>
+                <div class="hero-btns">
+                    <a href="#layanan" class="btn btn-primary">Mulai Sekarang</a>
+                    <a href="#visi" class="btn btn-outline">Pelajari Profil</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn.digitaldesa.com/uploads/profil/73.05.06.2005/berita/6ce1e846a476fc5c14ecd6d137bd1f17.png" alt="UMKM Digital">
+            </div>
+        </section>
+
+        <section style="padding-top: 0;">
+            <div class="stats-grid">
+                <div class="glass-card" style="text-align: center;">
+                    <div class="stat-number">34</div>
+                    <p style="opacity: 0.6; font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Sektor UMKM Lokal</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <div class="stat-number">355</div>
+                    <p style="opacity: 0.6; font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Mitra Digital Aktif</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="visi">
+            <div class="section-header">
+                <p class="sub">Tujuan Kami</p>
+                <h2>Visi & Misi Kelompok</h2>
+            </div>
+            <div class="vm-grid">
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-eye card-icon"></i>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Visi Kami</h3>
+                    <p style="opacity: 0.7;">Menjadi mitra strategis terdepan dalam mengakselerasi digitalisasi UMKM lokal untuk bersaing di pasar global dengan identitas visual yang kuat.</p>
+                </div>
+                <div class="glass-card">
+                    <i class="fas fa-bullseye card-icon" style="display: block; text-align: center;"></i>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; text-align: center;">Misi Kami</h3>
+                    <ul style="list-style: none; opacity: 0.7; font-size: 0.95rem;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #2ecc71; margin-right: 10px;"></i> Solusi teknologi web yang inovatif & responsif.</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #2ecc71; margin-right: 10px;"></i> Branding visual produk lokal kelas profesional.</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #2ecc71; margin-right: 10px;"></i> Pendampingan berkelanjutan di ekosistem digital.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan">
+            <div class="section-header">
+                <p class="sub">Layanan Servats</p>
+                <h2>Fitur Unggulan Kami</h2>
+            </div>
+            <div class="services-grid">
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-globe card-icon"></i>
+                    <h3 style="margin-bottom: 12px;">Website Katalog</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">Tampilan produk yang elegan dan mudah diakses dari mana saja.</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3 style="margin-bottom: 12px;">Digital Marketing</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">Strategi promosi online untuk meningkatkan jangkauan pasar.</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-camera card-icon"></i>
+                    <h3 style="margin-bottom: 12px;">Foto Produk</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">Fotografi profesional untuk meningkatkan nilai estetik produk.</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-mobile-alt card-icon"></i>
+                    <h3 style="margin-bottom: 12px;">Aplikasi Kasir</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.6;">Sistem manajemen transaksi yang rapi dan terautomasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tim">
+            <div class="section-header">
+                <p class="sub">Our Team</p>
+                <h2>Team Structure</h2>
+            </div>
+            <div class="team-grid">
+                <div class="glass-card" style="text-align: center; padding: 30px;">
+                    <div class="avatar-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Fathi" alt="Fathi"></div>
+                    <span class="role-badge">Project Manager</span>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 5px;">M. Fathi Farhat</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.5;">Business Strategy & Lead</p>
+                </div>
+                <div class="glass-card" style="text-align: center; padding: 30px;">
+                    <div class="avatar-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Raihan" alt="Raihan"></div>
+                    <span class="role-badge">Lead Ops</span>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Raihan</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.5;">Operational Management</p>
+                </div>
+                <div class="glass-card" style="text-align: center; padding: 30px;">
+                    <div class="avatar-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hafiz" alt="Hafiz"></div>
+                    <span class="role-badge">Junior Ops</span>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Hafiz Azzaidan</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.5;">Field Support & Riset</p>
+                </div>
+                <div class="glass-card" style="text-align: center; padding: 30px;">
+                    <div class="avatar-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Assyifa" alt="Assyifa"></div>
+                    <span class="role-badge">Lead DevOps</span>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Assyifa Khoirunnisa</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.5;">Infrastructure Architect</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 20px;">
+                        <div class="logo-icon"><i class="fas fa-leaf" style="color: white;"></i></div>
+                        <span class="logo-text">KELOMPOK <span>4</span></span>
+                    </a>
+                    <p style="font-size: 0.9rem; opacity: 0.6; line-height: 1.8;">Solusi digital modern yang dirancang khusus untuk membantu potensi UMKM Indonesia berkembang lebih jauh di kancah internasional.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Layanan</h3>
+                    <ul class="footer-links">
+                        <li>Website Katalog</li>
+                        <li>Digital Marketing</li>
+                        <li>Fotografi Produk</li>
+                        <li>Aplikasi Kasir</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> kelompok4@digital.id</li>
+                        <li><i class="fas fa-phone"></i> +62 856 9563 8214</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+                &copy; 2026 Kelompok 4 Digital Studio. All rights reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
