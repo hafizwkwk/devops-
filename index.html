@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <title>NailongFour – Digital Ecosystem</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -50,7 +55,6 @@
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-icon { background: #2ecc71; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.1rem; }
         
-        /* Nama Kelompok Style */
         .logo-text { font-weight: 800; color: #ffffff; font-size: 1.3rem; letter-spacing: -0.5px; overflow: hidden; white-space: nowrap; border-right: 2px solid #2ecc71; width: 0; animation: typingNav 3.5s steps(12, end) infinite; font-family: 'Courier New', Courier, monospace; }
         @keyframes typingNav { from { width: 0 } to { width: 160px } }
         
@@ -98,7 +102,6 @@
             html, body { overflow-y: auto; height: auto; }
             .page-wrapper { height: auto; min-height: 100vh; }
             
-            /* Tampilkan Nama Kelompok di HP (Header Atas) */
             nav { justify-content: flex-start !important; padding: 15px 5% !important; }
             nav .logo-text { 
                 display: block !important; 
@@ -109,7 +112,6 @@
                 margin-left: 10px;
             }
             
-            /* Navigasi Bawah Tetap Aktif */
             nav ul { 
                 position: fixed; bottom: 0; left: 0; width: 100%; 
                 background: #0a0a0a; padding: 12px 5px; 
@@ -302,7 +304,6 @@
             links.forEach(l => l.classList.remove('active-link'));
             document.getElementById('link-' + screenId).classList.add('active-link');
             
-            // Auto scroll ke atas saat ganti layar
             if (window.innerWidth <= 768) {
                 window.scrollTo(0,0);
             } else {
