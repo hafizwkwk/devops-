@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>NailongFour – Digital Ecosystem</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -11,10 +11,10 @@
 
     <style>
         /* --- RESET & GLOBAL STYLE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html, body { width: 100%; height: 100%; font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f140f; color: #ffffff; line-height: 1.6; overflow: hidden; }
 
-        /* --- LOADING SCREEN DENGAN ANIMASI UMKM --- */
+        /* --- LOADING SCREEN --- */
         #loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #0f140f; z-index: 10000; display: flex;
@@ -36,7 +36,7 @@
             height: 100vh; width: 100%; position: relative;
         }
 
-        /* --- LAYAR SWITCHING SYSTEM --- */
+        /* --- SCREEN SYSTEM --- */
         .screen {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: none; padding: 100px 8% 60px; overflow-y: auto;
@@ -45,30 +45,24 @@
         .screen.active { display: block; }
         @keyframes screenIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- NAVBAR (LOGO UMKM & OLD TYPING EFFECT) --- */
+        /* --- NAVBAR --- */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(15, 20, 15, 0.85); position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        /* Logo model UMKM */
         .logo-icon { background: #2ecc71; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.1rem; }
-        
-        /* Efek Ketik Model Old di Navbar atas */
         .logo-text { font-weight: 800; color: #ffffff; font-size: 1.3rem; letter-spacing: -0.5px; overflow: hidden; white-space: nowrap; border-right: 2px solid #2ecc71; width: 0; animation: typingNav 3.5s steps(12, end) infinite; font-family: 'Courier New', Courier, monospace; }
         @keyframes typingNav { from { width: 0 } to { width: 160px } }
         
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav ul li a { text-decoration: none; color: #ffffff; opacity: 0.5; transition: 0.3s; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer; }
-        nav ul li a:hover { opacity: 1; color: #2ecc71; }
         nav ul li a.active-link { opacity: 1; color: #2ecc71; position: relative; }
-        nav ul li a.active-link::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: #2ecc71; }
 
-        /* --- HERO HOME (POP UP ANIMATION) --- */
+        /* --- HERO HOME --- */
         .hero-container { display: flex; align-items: center; gap: 60px; min-height: 70vh; }
-        .hero-info { flex: 1; animation: heroPopUp 0.8s ease-out; }
+        .hero-info { flex: 1; }
         .hero-info h1 { font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
         .hero-info h1 span { color: #2ecc71; }
-        .hero-image-box { flex: 1; position: relative; animation: heroPopUp 1s ease-out; }
+        .hero-image-box { flex: 1; }
         .hero-image-box img { width: 100%; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); animation: floatingUp 4s infinite ease-in-out; }
-        @keyframes heroPopUp { 0% { opacity: 0; transform: scale(0.85); } 100% { opacity: 1; transform: scale(1); } }
 
         /* --- SOLUSI DIGITAL --- */
         .product-content-wrapper { display: flex; gap: 30px; margin-top: 20px; }
@@ -78,24 +72,14 @@
         .tab-display-area { flex: 1; background: rgba(255,255,255,0.03); border-radius: 25px; padding: 40px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
         .tab-pane { display: none; }
         .tab-pane.active { display: block; animation: fadeIn 0.4s ease; }
-        .tab-pane img { width: 100%; height: 260px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; border: 1px solid rgba(46, 204, 113, 0.2); }
-        .tab-pane h3 { font-size: 2rem; color: #2ecc71; margin-bottom: 15px; font-weight: 800; }
-        .tab-pane p { font-size: 1.1rem; line-height: 1.8; opacity: 0.8; }
+        .tab-pane img { width: 100%; height: 260px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; }
+        .tab-pane h3 { font-size: 2rem; color: #2ecc71; margin-bottom: 15px; }
 
-        /* --- TEAM GRID (POP UP & AVATAR MOVE) --- */
+        /* --- TEAM GRID --- */
         .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .t-card { 
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); 
-            padding: 30px 15px; border-radius: 30px; text-align: center; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
-        }
-        .t-card .img-container { width: 100px; height: 100px; margin: 0 auto 15px; transition: transform 0.4s ease; }
-        .t-card img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #2ecc71; padding: 4px; transition: transform 0.5s ease; }
-        .t-card:hover { transform: translateY(-15px); border-color: #2ecc71; background: rgba(46, 204, 113, 0.05); }
-        .t-card:hover img { transform: scale(1.15) rotate(5deg); }
-
-        .social-link-ig { color: #fff; font-size: 1.2rem; transition: 0.3s; }
-        .social-link-ig:hover { color: #2ecc71; transform: scale(1.2); }
+        .t-card { background: rgba(255,255,255,0.03); padding: 30px 15px; border-radius: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.08); transition: 0.4s; }
+        .t-card img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #2ecc71; padding: 4px; transition: 0.3s; }
+        .t-card:hover { transform: translateY(-10px); border-color: #2ecc71; }
 
         /* --- KONSULTASI --- */
         .cs-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
@@ -104,29 +88,58 @@
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; font-size: 0.8rem; font-weight: 700; color: #2ecc71; margin-bottom: 5px; }
         .input-group input, .input-group textarea { width: 100%; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-
         .btn { padding: 14px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; display: inline-block; }
         .btn-primary { background: #2ecc71; color: #000; }
 
-        /* --- MOBILE MODE --- */
+        /* --- MOBILE AUTO-ADAPTATION ENGINE --- */
         @media (max-width: 768px) {
             html, body { overflow-y: auto; height: auto; }
-            .page-wrapper { height: auto; min-height: 100vh; overflow: visible; }
-            .screen { position: relative; height: auto; padding: 80px 5% 100px; display: none; overflow: visible; }
+            .page-wrapper { height: auto; min-height: 100vh; }
+            
+            /* Pindahkan Navigasi ke Bawah agar Jempol Mudah Menggapai */
+            nav { justify-content: center; padding: 15px; }
+            nav .logo-text { display: none; } /* Sembunyikan teks logo di navigasi atas agar rapi */
+            
+            nav ul { 
+                position: fixed; bottom: 0; left: 0; width: 100%; 
+                background: #0a0a0a; padding: 12px 5px; 
+                justify-content: space-around; border-top: 1px solid #222; 
+                border-bottom: none; border-radius: 20px 20px 0 0;
+                box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+            }
+            nav ul li a { 
+                font-size: 0.6rem; display: flex; flex-direction: column; 
+                align-items: center; gap: 5px; opacity: 0.8; 
+            }
+            nav ul li a i { font-size: 1.2rem; } /* Perbesar icon untuk mobile */
+            nav ul li a.active-link::after { display: none; }
+            nav ul li a.active-link { opacity: 1; color: #2ecc71; }
+
+            .screen { position: relative; height: auto; padding: 80px 5% 120px !important; display: none; }
             .screen.active { display: block; }
-            nav ul { position: fixed; bottom: 0; left: 0; width: 100%; background: #0a0a0a; padding: 12px; justify-content: space-around; border-top: 1px solid #222; }
-            nav ul li a { font-size: 0.6rem; text-align: center; }
-            .hero-container { flex-direction: column; text-align: center; }
-            .hero-info h1 { font-size: 2.2rem; }
+            
+            .hero-container { flex-direction: column; text-align: center; gap: 30px; }
+            .hero-info h1 { font-size: 2.4rem; }
+            
             .product-content-wrapper { flex-direction: column; }
-            .tab-nav-vertical { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-            .v-btn { font-size: 0.75rem; padding: 12px; flex: 1 1 45%; }
-            .team-grid { grid-template-columns: 1fr; }
-            .cs-layout { grid-template-columns: 1fr; }
-            footer { position: relative !important; padding-bottom: 100px; }
+            .tab-nav-vertical { flex-direction: row; overflow-x: auto; padding-bottom: 10px; flex: none; }
+            .v-btn { flex: 0 0 auto; white-space: nowrap; font-size: 0.8rem; padding: 12px 20px; }
+            .tab-display-area { padding: 25px 20px; }
+            .tab-pane h3 { font-size: 1.5rem; }
+
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .t-card { padding: 20px 10px; }
+            .t-card img { width: 70px; height: 70px; }
+            .t-card h4 { font-size: 0.9rem; }
+
+            .cs-layout { grid-template-columns: 1fr; gap: 20px; }
+            .cs-card-info { padding: 30px 20px; }
+            
+            footer { padding-bottom: 110px !important; }
         }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes floatingUp { 0% { transform: translateY(0); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0); } }
+        @keyframes floatingUp { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
     </style>
 </head>
 <body onload="hideInitialLoader()">
@@ -145,10 +158,10 @@
                 <div class="logo-text">NailongFour</div>
             </a>
             <ul class="nav-menu">
-                <li><a onclick="changeScreen('home')" id="link-home" class="active-link"><i class="fas fa-home"></i> Beranda</a></li>
-                <li><a onclick="changeScreen('product')" id="link-product"><i class="fas fa-th-large"></i> Solusi</a></li>
-                <li><a onclick="changeScreen('team')" id="link-team"><i class="fas fa-users"></i> Team</a></li>
-                <li><a onclick="changeScreen('cs')" id="link-cs"><i class="fas fa-headset"></i> CS</a></li>
+                <li><a onclick="changeScreen('home')" id="link-home" class="active-link"><i class="fas fa-home"></i> <span>Beranda</span></a></li>
+                <li><a onclick="changeScreen('product')" id="link-product"><i class="fas fa-th-large"></i> <span>Solusi</span></a></li>
+                <li><a onclick="changeScreen('team')" id="link-team"><i class="fas fa-users"></i> <span>Team</span></a></li>
+                <li><a onclick="changeScreen('cs')" id="link-cs"><i class="fas fa-headset"></i> <span>CS</span></a></li>
             </ul>
         </nav>
 
@@ -158,7 +171,7 @@
                     <div style="background: rgba(46, 204, 113, 0.1); color: #2ecc71; padding: 6px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: inline-block; margin-bottom: 15px;">Digital Native</div>
                     <h1>Digitalisasi <span>UMKM</span> Tanpa Batas.</h1>
                     <p>Ubah tantangan menjadi peluang melalui infrastruktur digital terpadu yang dirancang khusus untuk pertumbuhan bisnis lokal.</p>
-                    <button class="btn btn-primary" onclick="changeScreen('product')">Mulai Eksplorasi</button>
+                    <button class="btn btn-primary" onclick="changeScreen('product')" style="margin-top: 25px;">Mulai Eksplorasi</button>
                 </div>
                 <div class="hero-image-box">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Dashboard">
@@ -167,106 +180,123 @@
         </div>
 
         <div id="product" class="screen">
-            <h2 style="text-align:center; margin-bottom:30px; font-weight: 800;">Solusi Digital Terintegrasi</h2>
+            <h2 style="text-align:center; margin-bottom:30px; font-weight: 800; color: #2ecc71;">Solusi Terintegrasi</h2>
             <div class="product-content-wrapper">
                 <div class="tab-nav-vertical">
-                    <button class="v-btn active" onclick="openTab(event, 'p1')"><i class="fas fa-globe"></i> Website Katalog Digital</button>
-                    <button class="v-btn" onclick="openTab(event, 'p2')"><i class="fas fa-bullhorn"></i> Pemasaran Digital Strategis</button>
-                    <button class="v-btn" onclick="openTab(event, 'p3')"><i class="fas fa-camera"></i> Fotografi Produk Komersial</button>
-                    <button class="v-btn" onclick="openTab(event, 'p4')"><i class="fas fa-cash-register"></i> Aplikasi Kasir Cloud</button>
+                    <button class="v-btn active" onclick="openTab(event, 'p1')"><i class="fas fa-globe"></i> Katalog</button>
+                    <button class="v-btn" onclick="openTab(event, 'p2')"><i class="fas fa-bullhorn"></i> Pemasaran</button>
+                    <button class="v-btn" onclick="openTab(event, 'p3')"><i class="fas fa-camera"></i> Fotografi</button>
+                    <button class="v-btn" onclick="openTab(event, 'p4')"><i class="fas fa-cash-register"></i> Kasir</button>
                 </div>
                 <div class="tab-display-area">
                     <div id="p1" class="tab-pane active">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Web">
                         <h3>Website Katalog Digital</h3>
-                        <p>Kami membangun showroom digital 24/7 untuk bisnis Anda. Bukan sekadar website biasa, katalog ini dirancang agar pelanggan Anda dapat melihat seluruh produk dengan detail yang jelas, mengecek stok secara real-time, dan melakukan pemesanan langsung melalui integrasi WhatsApp yang efisien.</p>
+                        <p>Showroom digital 24/7. Memungkinkan pelanggan mengecek stok secara real-time dan pesan via WhatsApp.</p>
                     </div>
                     <div id="p2" class="tab-pane">
                         <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80" alt="Marketing">
-                        <h3>Pemasaran Digital Strategis</h3>
-                        <p>Jangkau target pasar yang tepat dengan manajemen iklan media sosial (Instagram, Facebook, TikTok) dan Google Ads. Kami fokus pada strategi berbasis data untuk mengubah pengunjung menjadi pembeli setia.</p>
+                        <h3>Pemasaran Digital</h3>
+                        <p>Manajemen iklan Instagram & TikTok Ads berbasis data untuk meningkatkan omzet secara signifikan.</p>
                     </div>
                     <div id="p3" class="tab-pane">
                         <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80" alt="Photo">
-                        <h3>Fotografi Produk Komersial</h3>
-                        <p>Visual adalah kunci utama dalam dunia digital. Kami menyediakan jasa fotografi komersial yang membuat produk sederhana terlihat mewah dan menggugah selera.</p>
+                        <h3>Fotografi Produk</h3>
+                        <p>Visual premium yang membuat produk Anda terlihat mewah dan dipercaya oleh pelanggan baru.</p>
                     </div>
                     <div id="p4" class="tab-pane">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="POS">
-                        <h3>Aplikasi Kasir Cloud (POS)</h3>
-                        <p>Tinggalkan pencatatan manual yang rawan kesalahan. Sistem Point of Sale (POS) berbasis Cloud kami memungkinkan Anda mengelola transaksi harian secara akurat.</p>
+                        <h3>Aplikasi Kasir (POS)</h3>
+                        <p>Sistem Cloud untuk memantau transaksi harian Anda dari mana saja secara akurat.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="team" class="screen">
-            <h2 style="text-align:center; margin-bottom:40px;">Team Proyek NailongFour</h2>
+            <h2 style="text-align:center; margin-bottom:40px;">Team Proyek</h2>
             <div class="team-grid">
                 <div class="t-card">
-                    <div class="img-container"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Fathi" alt="PM"></div>
-                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem;">PROJECT MANAGER</p><h4>M. Fathi Farhat</h4><a href="https://www.instagram.com/1810muf_____/" target="_blank" class="social-link-ig"><i class="fab fa-instagram"></i></a></div>
-                <div class="t-card"><div class="img-container"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Raihan" alt="Ops"></div><p style="color:#2ecc71; font-weight:800; font-size:0.6rem;">LEAD OPS</p><h4>Raihan</h4><a href="#" class="social-link-ig"><i class="fab fa-instagram"></i></a></div>
-                <div class="t-card"><div class="img-container"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hafiz" alt="Ops"></div><p style="color:#2ecc71; font-weight:800; font-size:0.6rem;">JUNIOR OPS</p><h4>Hafiz Azzaidan</h4><a href="https://www.instagram.com/hafizzzz.a?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link-ig"><i class="fab fa-instagram"></i></a></div>
-                <div class="t-card"><div class="img-container"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Assyifa" alt="Dev"></div><p style="color:#2ecc71; font-weight:800; font-size:0.6rem;">LEAD DEVOPS</p><h4>Assyifa K.</h4><a href="#" class="social-link-ig"><i class="fab fa-instagram"></i></a></div>
-                <div class="t-card"><div class="img-container"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Eka" alt="Dev"></div><p style="color:#2ecc71; font-weight:800; font-size:0.6rem;">JUNIOR DEVOPS</p><h4>Eka Purnamasari</h4><a href="https://www.instagram.com/ekaprnmsri697/" target="_blank" class="social-link-ig"><i class="fab fa-instagram"></i></a></div>
-                <div class="t-card"><div class="img-container"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mawardin" alt="Dev"></div><p style="color:#2ecc71; font-weight:800; font-size:0.6rem;">FRONTEND DEV</p><h4>Mawardin</h4><a href="#" class="social-link-ig"><i class="fab fa-instagram"></i></a></div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Fathi" alt="PM">
+                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem; margin-top:10px;">PROJECT MANAGER</p>
+                    <h4>M. Fathi Farhat</h4>
+                </div>
+                <div class="t-card">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Raihan" alt="Ops">
+                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem; margin-top:10px;">LEAD OPS</p>
+                    <h4>Raihan</h4>
+                </div>
+                <div class="t-card">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hafiz" alt="Ops">
+                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem; margin-top:10px;">JUNIOR OPS</p>
+                    <h4>Hafiz A.</h4>
+                </div>
+                <div class="t-card">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Assyifa" alt="Dev">
+                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem; margin-top:10px;">LEAD DEVOPS</p>
+                    <h4>Assyifa K.</h4>
+                </div>
+                <div class="t-card">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Eka" alt="Dev">
+                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem; margin-top:10px;">JUNIOR DEVOPS</p>
+                    <h4>Eka P.</h4>
+                </div>
+                <div class="t-card">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mawardin" alt="Dev">
+                    <p style="color:#2ecc71; font-weight:800; font-size:0.6rem; margin-top:10px;">FRONTEND DEV</p>
+                    <h4>Mawardin</h4>
+                </div>
             </div>
         </div>
 
         <div id="cs" class="screen">
-            <h2 style="text-align:center; margin-bottom:30px;">Konsultasi Bisnis</h2>
+            <h2 style="text-align:center; margin-bottom:30px;">Hubungi Kami</h2>
             <div class="cs-layout">
                 <div class="cs-card-info">
                     <h3>Siap Naik Kelas?</h3>
-                    <p>Hubungi CS kami untuk konsultasi strategi digital secara gratis bersama pakar kami.</p>
+                    <p>Dapatkan strategi digital gratis hari ini.</p>
                     <a href="https://wa.me/6285695638214" target="_blank" class="btn" style="background:#000; color:#2ecc71; margin-top:20px; font-weight:800;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 </div>
                 <div class="cs-form-box">
-                    <div class="input-group"><label>Nama Lengkap</label><input type="text" id="cs_name"></div>
-                    <div class="input-group"><label>Nama Bisnis</label><input type="text" id="cs_business"></div>
-                    <div class="input-group"><label>Pesan Anda</label><textarea id="cs_message" rows="3"></textarea></div>
-                    <button class="btn btn-primary" style="width: 100%;" id="btn_send_message">Kirim Pesan</button>
+                    <div class="input-group"><label>Nama</label><input type="text" id="cs_name"></div>
+                    <div class="input-group"><label>Bisnis</label><input type="text" id="cs_business"></div>
+                    <div class="input-group"><label>Pesan</label><textarea id="cs_message" rows="2"></textarea></div>
+                    <button class="btn btn-primary" style="width: 100%;" id="btn_send_message">Kirim Konsultasi</button>
                 </div>
             </div>
         </div>
 
-        <footer style="position: fixed; bottom: 10px; width: 100%; text-align: center; pointer-events: none; z-index: 5;">
-            <p style="opacity: 0.5; font-size: 0.7rem;">&copy; 2026 NailongFour Digital Ecosystem.</p>
+        <footer style="padding: 40px 0; text-align: center; opacity: 0.5; font-size: 0.7rem;">
+            &copy; 2026 NailongFour Digital Ecosystem.
         </footer>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-
         function hideInitialLoader() {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
                 loader.style.opacity = '0';
                 setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 1200);
+            }, 1000);
         }
 
         function changeScreen(screenId) {
-            const loader = document.getElementById('loader');
-            loader.style.display = 'flex';
-            loader.style.opacity = '1';
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
 
-            setTimeout(() => {
-                const screens = document.querySelectorAll('.screen');
-                screens.forEach(s => s.classList.remove('active'));
-                document.getElementById(screenId).classList.add('active');
-
-                const links = document.querySelectorAll('.nav-menu a');
-                links.forEach(l => l.classList.remove('active-link'));
-                document.getElementById('link-' + screenId).classList.add('active-link');
-
+            const links = document.querySelectorAll('.nav-menu a');
+            links.forEach(l => l.classList.remove('active-link'));
+            document.getElementById('link-' + screenId).classList.add('active-link');
+            
+            // Auto scroll ke atas saat ganti layar
+            if (window.innerWidth <= 768) {
+                window.scrollTo(0,0);
+            } else {
                 document.getElementById(screenId).scrollTop = 0;
-
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 800);
+            }
         }
 
         function openTab(evt, tabId) {
@@ -282,8 +312,8 @@
             const name = document.getElementById('cs_name').value;
             const business = document.getElementById('cs_business').value;
             const message = document.getElementById('cs_message').value;
-            if(!name || !business || !message) { alert("Mohon lengkapi semua kolom!"); return; }
-            const text = `Halo NailongFour CS,\n\nSaya ingin berkonsultasi:\n*Nama:* ${name}\n*Bisnis:* ${business}\n*Pesan:* ${message}`;
+            if(!name || !business || !message) { alert("Lengkapi kolom dulu bosku!"); return; }
+            const text = `Halo NailongFour CS,\n*Nama:* ${name}\n*Bisnis:* ${business}\n*Pesan:* ${message}`;
             window.open(`https://wa.me/6285695638214?text=${encodeURIComponent(text)}`, '_blank');
         });
     </script>
