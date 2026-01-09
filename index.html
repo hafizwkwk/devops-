@@ -8,48 +8,27 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 
-    <title>NailongFour – Digital Ecosystem v101</title>
+    <title>NailongFour – Digital Ecosystem Komplit</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap&v=101" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=101">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css?v=101" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- UPDATE v101 - FORCE CSS REFRESH --- */
-        body::before { content: "v101"; display: none; } 
-
         /* --- RESET & GLOBAL STYLE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html, body { width: 100%; height: 100%; font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f140f; color: #ffffff; line-height: 1.6; overflow: hidden; }
 
         /* --- LOADING SCREEN --- */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0f140f; z-index: 10000; display: flex;
-            flex-direction: column; justify-content: center; align-items: center;
-            transition: 0.5s;
-        }
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f140f; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.5s; }
         .loader-content { text-align: center; }
         .umkm-anim { font-size: 3rem; color: #2ecc71; animation: grow 1.5s infinite; }
-        @keyframes grow {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 20px #2ecc71; }
-            100% { transform: scale(1); opacity: 0.5; }
-        }
+        @keyframes grow { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 20px #2ecc71; } 100% { transform: scale(1); opacity: 0.5; } }
 
-        .page-wrapper {
-            background: radial-gradient(circle at top right, rgba(46, 204, 113, 0.15), transparent),
-                        radial-gradient(circle at bottom left, rgba(46, 204, 113, 0.1), transparent),
-                        #0f140f;
-            height: 100vh; width: 100%; position: relative;
-        }
+        .page-wrapper { background: radial-gradient(circle at top right, rgba(46, 204, 113, 0.15), transparent), radial-gradient(circle at bottom left, rgba(46, 204, 113, 0.1), transparent), #0f140f; height: 100vh; width: 100%; position: relative; }
 
         /* --- SCREEN SYSTEM --- */
-        .screen {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: none; padding: 100px 8% 60px; overflow-y: auto;
-            animation: screenIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        }
+        .screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; padding: 100px 8% 60px; overflow-y: auto; animation: screenIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
         .screen.active { display: block; }
         @keyframes screenIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -57,10 +36,8 @@
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(15, 20, 15, 0.85); position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-icon { background: #2ecc71; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.1rem; }
-        
-        .logo-text { font-weight: 800; color: #ffffff; font-size: 1.3rem; letter-spacing: -0.5px; overflow: hidden; white-space: nowrap; border-right: 2px solid #2ecc71; width: 0; animation: typingNav 3.5s steps(12, end) infinite; font-family: 'Courier New', Courier, monospace; }
-        @keyframes typingNav { from { width: 0 } to { width: 160px } }
-        
+        .logo-text { font-weight: 800; color: #ffffff; font-size: 1.3rem; letter-spacing: -0.5px; }
+
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav ul li a { text-decoration: none; color: #ffffff; opacity: 0.5; transition: 0.3s; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer; }
         nav ul li a.active-link { opacity: 1; color: #2ecc71; position: relative; }
@@ -83,12 +60,12 @@
         .tab-pane.active { display: block; animation: fadeIn 0.4s ease; }
         .tab-pane img { width: 100%; height: 260px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; }
         .tab-pane h3 { font-size: 2rem; color: #2ecc71; margin-bottom: 15px; }
+        .solusi-desc { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin-top: 10px; }
 
         /* --- TEAM GRID --- */
         .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .t-card { background: rgba(255,255,255,0.03); padding: 30px 15px; border-radius: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.08); transition: 0.4s; }
-        .t-card img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #2ecc71; padding: 4px; transition: 0.3s; }
-        .t-card:hover { transform: translateY(-10px); border-color: #2ecc71; }
+        .t-card { background: rgba(255,255,255,0.03); padding: 30px 15px; border-radius: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.08); }
+        .t-card img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #2ecc71; padding: 4px; }
 
         /* --- KONSULTASI --- */
         .cs-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
@@ -105,52 +82,43 @@
             html, body { overflow-y: auto; height: auto; }
             .page-wrapper { height: auto; min-height: 100vh; }
             
-            nav { justify-content: flex-start !important; padding: 15px 5% !important; background: #0f140f !important; }
-            nav .logo-text { 
-                display: block !important; 
-                font-size: 1rem !important; 
-                width: auto !important; 
-                border-right: none !important; 
-                animation: none !important; 
-                margin-left: 10px;
+            /* Tetap menampilkan Nama Kelompok di Atas */
+            nav { 
+                justify-content: center !important; 
+                padding: 15px 5% !important; 
+                background: #0f140f !important;
+                position: fixed;
+                top: 0;
+                width: 100%;
             }
-            
-            nav ul { 
-                position: fixed; bottom: 0; left: 0; width: 100%; 
-                background: #0a0a0a; padding: 12px 5px; 
-                justify-content: space-around; border-top: 1px solid #2ecc71; 
-                border-bottom: none; border-radius: 20px 20px 0 0;
-                box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
-                z-index: 9999;
-            }
-            nav ul li a { 
-                font-size: 0.6rem; display: flex; flex-direction: column; 
-                align-items: center; gap: 5px; opacity: 0.8; 
-            }
-            nav ul li a i { font-size: 1.2rem; }
-            nav ul li a.active-link::after { display: none; }
-            nav ul li a.active-link { opacity: 1; color: #2ecc71; }
+            .logo-text { font-size: 1.1rem !important; }
 
-            .screen { position: relative; height: auto; padding: 80px 5% 120px !important; display: none; }
-            .screen.active { display: block; }
+            /* Menu Navigasi ditaruh di Bawah */
+            nav ul { 
+                position: fixed; 
+                bottom: 0; 
+                left: 0; 
+                width: 100%; 
+                background: #0a0a0a; 
+                padding: 12px 5px; 
+                justify-content: space-around; 
+                border-top: 1px solid #2ecc71; 
+                border-radius: 20px 20px 0 0; 
+                z-index: 9999; 
+            }
+            nav ul li a { font-size: 0.6rem; display: flex; flex-direction: column; align-items: center; gap: 5px; opacity: 0.8; }
+            nav ul li a i { font-size: 1.2rem; }
             
+            .screen { position: relative; height: auto; padding: 80px 5% 120px !important; }
             .hero-container { flex-direction: column; text-align: center; gap: 30px; }
             .hero-info h1 { font-size: 2.4rem; }
-            
             .product-content-wrapper { flex-direction: column; }
-            .tab-nav-vertical { flex-direction: row; overflow-x: auto; padding-bottom: 10px; flex: none; }
-            .v-btn { flex: 0 0 auto; white-space: nowrap; font-size: 0.8rem; padding: 12px 20px; }
-            .tab-display-area { padding: 25px 20px; }
-            .tab-pane h3 { font-size: 1.5rem; }
-
+            .tab-nav-vertical { flex-direction: row; overflow-x: auto; flex: none; gap: 8px; padding-bottom: 5px; }
+            .v-btn { padding: 12px 15px; font-size: 0.8rem; white-space: nowrap; }
+            .tab-display-area { padding: 25px 15px; border-radius: 20px; }
+            .tab-pane h3 { font-size: 1.4rem; }
             .team-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .t-card { padding: 20px 10px; }
-            .t-card img { width: 70px; height: 70px; }
-            .t-card h4 { font-size: 0.9rem; }
-
             .cs-layout { grid-template-columns: 1fr; gap: 20px; }
-            .cs-card-info { padding: 30px 20px; }
-            
             footer { padding-bottom: 110px !important; }
         }
 
@@ -206,24 +174,24 @@
                 </div>
                 <div class="tab-display-area">
                     <div id="p1" class="tab-pane active">
-                        <img src="gambar/batik.jpeg" alt="Web">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Web">
                         <h3>Website Katalog Digital</h3>
-                        <p>Showroom digital 24/7. Memungkinkan pelanggan mengecek stok secara real-time dan pesan via WhatsApp.</p>
+                        <p class="solusi-desc">Tampilkan produk unggulan Anda secara profesional 24/7. Memudahkan pelanggan melihat detail harga, stok, dan melakukan pemesanan langsung melalui WhatsApp secara otomatis tanpa hambatan.</p>
                     </div>
                     <div id="p2" class="tab-pane">
                         <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80" alt="Marketing">
                         <h3>Pemasaran Digital</h3>
-                        <p>Manajemen iklan Instagram & TikTok Ads berbasis data untuk meningkatkan omzet secara signifikan.</p>
+                        <p class="solusi-desc">Maksimalkan jangkauan bisnis Anda dengan iklan yang tepat sasaran di Instagram dan TikTok. Kami mengelola kampanye berbasis data untuk memastikan setiap biaya iklan menghasilkan peningkatan omzet yang nyata.</p>
                     </div>
                     <div id="p3" class="tab-pane">
-                        <img src="gambar/apis.jpeg" alt="Photo">
+                        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80" alt="Photo">
                         <h3>Fotografi Produk</h3>
-                        <p>Visual premium yang membuat produk Anda terlihat mewah dan dipercaya oleh pelanggan baru.</p>
+                        <p class="solusi-desc">Ubah tampilan produk biasa menjadi luar biasa dengan visual premium. Foto berkualitas tinggi meningkatkan kepercayaan calon pelanggan hingga 80% dan membuat produk Anda jauh lebih unggul dibanding kompetitor.</p>
                     </div>
                     <div id="p4" class="tab-pane">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="POS">
                         <h3>Aplikasi Kasir (POS)</h3>
-                        <p>Sistem Cloud untuk memantau transaksi harian Anda dari mana saja secara akurat.</p>
+                        <p class="solusi-desc">Kelola transaksi dan stok barang dengan sistem kasir berbasis Cloud. Anda dapat memantau laporan penjualan harian secara akurat dari mana saja, meminimalkan kesalahan manusia, dan menghemat waktu operasional.</p>
                     </div>
                 </div>
             </div>
@@ -287,33 +255,19 @@
         </footer>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js?v=101"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-        function hideInitialLoader() {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 1000);
-        }
-
+        function hideInitialLoader() { setTimeout(() => { const loader = document.getElementById('loader'); loader.style.opacity = '0'; setTimeout(() => { loader.style.display = 'none'; }, 500); }, 1000); }
         function changeScreen(screenId) {
             const screens = document.querySelectorAll('.screen');
             screens.forEach(s => s.classList.remove('active'));
             document.getElementById(screenId).classList.add('active');
-
-            const links = document.querySelectorAll('.nav-menu a');
+            const links = document.querySelectorAll('.nav-menu a, nav ul li a');
             links.forEach(l => l.classList.remove('active-link'));
             document.getElementById('link-' + screenId).classList.add('active-link');
-            
-            if (window.innerWidth <= 768) {
-                window.scrollTo(0,0);
-            } else {
-                document.getElementById(screenId).scrollTop = 0;
-            }
+            window.scrollTo(0,0);
         }
-
         function openTab(evt, tabId) {
             const panes = document.querySelectorAll(".tab-pane");
             panes.forEach(p => p.classList.remove("active"));
@@ -322,12 +276,11 @@
             document.getElementById(tabId).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
-
         document.getElementById('btn_send_message').addEventListener('click', function() {
             const name = document.getElementById('cs_name').value;
             const business = document.getElementById('cs_business').value;
             const message = document.getElementById('cs_message').value;
-            if(!name || !business || !message) { alert("Lengkapi kolom dulu bosku!"); return; }
+            if(!name || !business || !message) { alert("Lengkapi kolom dulu!"); return; }
             const text = `Halo NailongFour CS,\n*Nama:* ${name}\n*Bisnis:* ${business}\n*Pesan:* ${message}`;
             window.open(`https://wa.me/6285695638214?text=${encodeURIComponent(text)}`, '_blank');
         });
