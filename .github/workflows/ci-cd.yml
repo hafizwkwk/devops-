@@ -1,0 +1,23 @@
+name: CI/CD Monitoring Check
+
+on:
+  push:
+    branches: [ "main" ] # Menjalankan action saat push ke branch main
+
+jobs:
+  check-website:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kodingan
+        uses: actions/checkout@v4
+
+      - name: Cek Status Link Monitoring
+        run: |
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" https://nailong4.my.id/monitor/)
+          echo "Status code: $status_code"
+          if [ $status_code -eq 200 ]; then
+            echo "Website Aman (200 OK)"
+          else
+            echo "Website Error!"
+            exit 1
+          fi

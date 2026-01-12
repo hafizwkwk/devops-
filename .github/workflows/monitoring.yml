@@ -1,0 +1,13 @@
+name: Check Monitoring Site
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  ping-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit Monitoring URL
+        run: |
+          curl -I https://nailong4.my.id/monitor/
